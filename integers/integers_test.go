@@ -37,12 +37,12 @@ func TestSum(t *testing.T) {
 	})
 }
 
-func TestSumAll(t *testing.T) {
+func TestSumAllTails(t *testing.T) {
 	collectionOne := []int{1, 2, 3, 4, 5}
 	collectionTwo := []int{4, 3, 2, 1, 0}
 
-	expected := []int{15, 10}
-	result := SumAll(collectionOne, collectionTwo)
+	expected := []int{14, 6}
+	result := SumAllTails(collectionOne, collectionTwo)
 
 	if !reflect.DeepEqual(expected, result) {
 		t.Errorf("Expected: %d. Received: %d", expected, result)

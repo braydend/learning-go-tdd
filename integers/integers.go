@@ -12,12 +12,13 @@ func Sum(numbers []int) (result int) {
 	return result
 }
 
-func SumAll(collectionsToSum ...[]int) []int {
+func SumAllTails(collectionsToSum ...[]int) []int {
 	numberOfCollections := len(collectionsToSum)
 	sums := make([]int, numberOfCollections)
 
 	for i, collection := range collectionsToSum {
-		sums[i] = Sum(collection)
+		numbers := collection[1:]
+		sums[i] = Sum(numbers)
 	}
 
 	return sums
