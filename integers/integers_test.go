@@ -37,14 +37,32 @@ func TestSum(t *testing.T) {
 	})
 }
 
-func TestSumAllTails(t *testing.T) {
-	collectionOne := []int{1, 2, 3, 4, 5}
-	collectionTwo := []int{4, 3, 2, 1, 0}
+func checkSums(t *testing.T, expected, actual []int) {
+	t.Helper()
 
-	expected := []int{14, 6}
-	result := SumAllTails(collectionOne, collectionTwo)
-
-	if !reflect.DeepEqual(expected, result) {
-		t.Errorf("Expected: %d. Received: %d", expected, result)
+	if !reflect.DeepEqual(expected, actual) {
+		t.Errorf("Expected: %d. Received: %d", expected, actual)
 	}
+}
+
+func TestSumAllTails(t *testing.T) {
+	t.Run("Sum some slices", func(t *testing.T) {
+		collectionOne := []int{1, 2, 3, 4, 5}
+		collectionTwo := []int{4, 3, 2, 1, 0}
+
+		expected := []int{14, 6}
+		result := SumAllTails(collectionOne, collectionTwo)
+
+		checkSums(t, expected, result)
+	})
+
+	t.Run("safely sum empty slices", func(t *testing.T) {
+		collectionOne := []int{}
+		collectionTwo := []int{4}
+
+		expected := []int{0, 0}
+		result := SumAllTails(collectionOne, collectionTwo)
+
+		checkSums(t, expected, result)
+	})
 }

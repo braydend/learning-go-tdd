@@ -13,12 +13,15 @@ func Sum(numbers []int) (result int) {
 }
 
 func SumAllTails(collectionsToSum ...[]int) []int {
-	numberOfCollections := len(collectionsToSum)
-	sums := make([]int, numberOfCollections)
+	var sums []int
 
-	for i, collection := range collectionsToSum {
-		numbers := collection[1:]
-		sums[i] = Sum(numbers)
+	for _, collection := range collectionsToSum {
+		if len(collection) == 0 {
+			sums = append(sums, 0)
+		} else {
+			tail := collection[1:]
+			sums = append(sums, Sum(tail))
+		}
 	}
 
 	return sums
