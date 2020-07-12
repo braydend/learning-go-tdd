@@ -11,3 +11,14 @@ func Sum(numbers []int) (result int) {
 
 	return result
 }
+
+func SumAll(collectionsToSum ...[]int) []int {
+	numberOfCollections := len(collectionsToSum)
+	sums := make([]int, numberOfCollections)
+
+	for i, collection := range collectionsToSum {
+		sums[i] = Sum(collection)
+	}
+
+	return sums
+}
