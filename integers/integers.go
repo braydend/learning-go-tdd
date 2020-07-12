@@ -5,8 +5,8 @@ func Add(x, y int) (result int) {
 }
 
 func Sum(numbers [3]int) (result int) {
-	for i := 0; i < 3; i++ {
-		result = result + numbers[i]
+	for _, number := range numbers {
+		result = result + number
 	}
 
 	return result
