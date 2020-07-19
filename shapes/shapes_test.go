@@ -1,14 +1,28 @@
 package shapes
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestPerimiter(t *testing.T) {
-	rectangle := Rectangle{10.0, 10.0}
-	result := Perimiter(rectangle)
-	expected := 40.0
+	perimiterTests := []struct {
+		name     string
+		shape    Shape
+		expected float64
+	}{
+		{name: "Rectangle", shape: Rectangle{10, 10}, expected: 40.0},
+		{name: "Circle", shape: Circle{12}, expected: 75.39822368615503},
+		{name: "Triangle", shape: Triangle{10, 10}, expected: 32.3606797749979},
+	}
 
-	if expected != result {
-		t.Errorf("Received: %.2f. Expected: %.2f", expected, result)
+	for _, testCase := range perimiterTests {
+		t.Run(testCase.name, func(t *testing.T) {
+			result := testCase.shape.Perimiter()
+
+			if result != testCase.expected {
+				t.Errorf("%#v. Received: %.2f. Expected: %.2f", testCase.shape, result, testCase.expected)
+			}
+		})
 	}
 }
 
